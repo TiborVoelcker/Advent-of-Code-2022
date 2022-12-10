@@ -41,7 +41,7 @@ impl Iterator for Elves {
     }
 }
 
-fn elves(file_path: &String) -> Result<Elves, Error> {
+fn elves(file_path: String) -> Result<Elves, Error> {
     let file = File::open(file_path)?;
     let reader = BufReader::new(file);
 
@@ -52,8 +52,7 @@ fn elves(file_path: &String) -> Result<Elves, Error> {
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let file_path = args.get(1).expect("File path missing.");
+    let file_path = env::args().nth(1).expect("File path missing.");
 
     let elves = elves(file_path).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {err}");
