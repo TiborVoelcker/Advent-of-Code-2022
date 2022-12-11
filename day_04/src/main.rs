@@ -58,7 +58,6 @@ fn read_lines(file_path: String) -> Result<Lines<BufReader<File>>, Error> {
 }
 
 fn main() {
-    let a = 2;
     let file_path = env::args().nth(1).expect("File path missing.");
 
     let lines = read_lines(file_path).unwrap_or_else(|err| {
